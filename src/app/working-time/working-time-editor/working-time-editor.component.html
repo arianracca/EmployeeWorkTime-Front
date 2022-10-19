@@ -1,0 +1,27 @@
+<h1 mat-dialog-title class="bg-dark bg-gradient p-2 text-white fs-6">Editar jornada laboral</h1>
+
+        <form [formGroup]="form" (submit)="onSubmit()" class="bg-dark p-2 bg-opacity-10">
+
+          <mat-dialog-content>
+            <div>
+              <label for="startTime" class="form-label">Hora de ingreso: </label>
+              <input id="startTime" type="time" formControlName="startTime" required/>
+            </div>
+            <br>
+            <div>
+              <label for="endTime" class="form-label">Hora de salida: </label>
+              <input id="endTime" type="time" formControlName="endTime" required/>
+            </div>
+          </mat-dialog-content>
+          <mat-dialog-actions>
+          <button type="submit" class="btn btn-success" [disabled]="!formValid()" >Aceptar</button>
+            <button class="btn btn-danger" mat-button mat-dialog-close>Cancelar</button>
+          </mat-dialog-actions>
+          <br>
+          <mat-error *ngIf="!formValid()">
+            Ambos campos obligatorios. <br>
+            La hora de ingreso debe ser anterior a la de salida.
+          </mat-error>
+        </form>
+
+

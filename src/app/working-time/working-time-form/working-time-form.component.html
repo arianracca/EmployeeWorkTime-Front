@@ -1,0 +1,123 @@
+<div class="container">
+  <div class="row">
+      <h2 class="bg-dark bg-gradient text-white">Nueva Jornada Laboral</h2>
+    <!-- Formulario de Crear Jornada -->
+
+      <form [formGroup]="form" (submit)="onSubmit()" class="bg-dark p-2 bg-opacity-10">
+        <div class="d-grid gap-2 d-md-flex justify-content-around">
+        <mat-form-field>
+          <mat-label>Empleado</mat-label>
+          <mat-select formControlName="employee" (selectionChange)="onSelectionChange($event, 'employee')">
+            <mat-option>--------</mat-option>
+            <mat-option *ngFor="let employee of employeeList" [value]="employee.id">
+              {{ employee.id }} - {{ employee.name }} {{ employee.lastName }} {{ employee.email }}
+            </mat-option>
+          </mat-select>
+          <mat-hint >Seleccione un empleado</mat-hint>
+          <mat-error *ngIf="form.get('employee')?.hasError('required')">
+            El empleado es obligatorio
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Tipo de Turno</mat-label>
+          <mat-select formControlName="type" (selectionChange)="onSelectionChange($event, 'type')">
+            <mat-option>--------</mat-option>
+            <mat-option *ngFor="let workingType of workingTypeList" [value]="workingType.id">
+              {{ workingType.id }} - {{ workingType.type }}
+            </mat-option>
+          </mat-select>
+          <mat-hint>Seleccione un tipo de turno</mat-hint>
+          <mat-error *ngIf="form.get('type')?.hasError('required')">
+            El tipo de jornada es obligatorio
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Fecha</mat-label>
+          <input class="text-dark" matInput [matDatepicker]="picker" formControlName="date"
+            (dateChange)="onSelectionChange($event, 'date')" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="form.get('date')?.hasError('required')">
+            La fecha es obligatoria
+          </mat-error>
+        </mat-form-field>
+
+
+        <br>
+        <div class="m-3 d-md-flex justify-content-md-end">
+        <div class="p-1">
+          <label for="startime" class="form-label text-dark">Hora de ingreso: </label>
+          <input id="startime" type="time" formControlName="startTime" required />
+        </div>
+
+        <br>
+
+        <div class="p-1">
+          <label for="endTime" class="form-label text-dark">Hora de salida: </label>
+          <input id="endTime" type="time" formControlName="endTime" required />
+        </div>
+      </div>
+    </div>
+        <div class="d-grid gap-2 mt-3 d-md-flex justify-content-md-end">
+        <button type="submit" class="btn btn-success me-md-2" [disabled]="this.form.invalid">Asignar</button>
+        <br>
+        </div>
+      </form>
+    </div>
+    </div>
+
+<br>
+<br>
+    <!-- Tabla de Jornadas -->
+<div class="container">
+  <div class="row">
+    <h2>Jornadas Laborales</h2>
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Empleado</th>
+          <th>Tipo Turno</th>
+          <th>Fecha</th>
+          <th>Entrada</th>
+          <th>Salida</th>
+          <th>Horas</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let workingTime of workingTimeList">
+          <td>{{workingTime.id}}</td>
+          <td>{{workingTime.employee.id}} - {{workingTime.employee.name}} {{workingTime.employee.lastName}}</td>
+          <td>{{workingTime.type.id}} - {{workingTime.type.type}}</td>
+          <td>{{workingTime.date}}</td>
+          <td>{{workingTime.startTime}}</td>
+          <td>{{workingTime.endTime}}</td>
+          <td>{{workingTime.hours}}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="edit(this.workingTime)"
+            >
+              Editar
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="delete(this.workingTime)"
+            >
+              Eliminar
+            </button>
+
+
+        </tr>
+      </tbody>
+      <br>
+    </table>
+
+  </div>
+</div>

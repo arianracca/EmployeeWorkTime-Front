@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient text-white">
+  <div class="container-fluid">
+    <a class="navbar-brand"
+    routerLink="http://localhost:4200/apiemployees/v1"
+    routerLinkActive="active">
+    <img src="/assets/computer.png" alt="Logo">
+  </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link"
+          href="employees"
+          routerLinkActive="true"
+          ariaCurrentWhenActive="page">Empleados</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+          href="workingtypes"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page">Tipos de Turnos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+          href="workingtimes"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page">Jornadas Laborales</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

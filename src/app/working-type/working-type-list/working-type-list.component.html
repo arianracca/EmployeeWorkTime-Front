@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+  <h2 class="bg-dark bg-gradient text-white">Tipos de Turnos</h2>
+  <table class="table table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Tipo</th>
+        <th>Mínimo Hs</th>
+        <th>Máximo Hs</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let workingType of workingTypeList">
+        <td>{{workingType.id}}</td>
+        <td>{{workingType.type}}</td>
+        <td>{{workingType.minHours}}</td>
+        <td>{{workingType.maxHours}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>

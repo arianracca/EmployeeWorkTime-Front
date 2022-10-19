@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <h2 class="bg-dark bg-gradient text-white">Formulario de Empleados</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit" class="bg-dark p-2 bg-opacity-10">
+      <div class="form-group">
+        <label class="col-form-label" for="name">Nombre: </label>
+        <input id="name" type="text" class="form-control" formControlName="name" placeholder="Nombre" required
+          [ngClass]="{ 'is-invalid': f.name.touched && f.name.errors }">
+        <div *ngIf="f.name.touched && f.name.errors" class="invalid-feedback">
+          <div *ngIf="f.name.errors.required">El nombre es obligatorio</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label" for="lastName">Apellido: </label>
+        <input id="lastName" type="text" class="form-control" formControlName="lastName" placeholder="Apellido" required
+          [ngClass]="{ 'is-invalid': f.lastName.touched && f.lastName.errors }">
+        <div *ngIf="f.lastName.touched && f.lastName.errors" class="invalid-feedback">
+          <div *ngIf="f.lastName.errors.required">El apellido es obligatorio</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label" for="email">Email: </label>
+        <input id="email" type="email" class="form-control" formControlName="email" placeholder="ejemplo@ejemeplo.com"
+          required [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }">
+        <div *ngIf="f.email.touched && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">El email es obligatorio</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label" for="phoneNumber">Teléfono: </label>
+        <input id="phoneNumber" type="number" class="form-control" formControlName="phoneNumber" placeholder="999999999"
+          required [ngClass]="{ 'is-invalid': f.phoneNumber.touched && f.phoneNumber.errors }">
+        <div *ngIf="f.phoneNumber.touched && f.phoneNumber.errors" class="invalid-feedback">
+          <div *ngIf="f.phoneNumber.errors.required">El telefono es obligatorio</div>
+        </div>
+      </div>
+      <br>
+      <div class="d-grid gap-2 mt-3 d-md-flex justify-content-md-center">
+      <button type="submit" class="btn btn-success mb-2" [disabled]="this.form.invalid"
+        (click)="save()">Guardar</button>
+      </div>
+    </form>
+  </div>
+  <div>
+    <h2>Lista empleados</h2>
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Email</th>
+          <th>Tel</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employeeList">
+          <td>{{employee.id}}</td>
+          <td>{{employee.name}}</td>
+          <td>{{employee.lastName}}</td>
+          <td>{{employee.email}}</td>
+          <td>{{employee.phoneNumber}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
